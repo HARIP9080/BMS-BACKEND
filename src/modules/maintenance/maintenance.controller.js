@@ -9,8 +9,8 @@ import Maintenance from "./maintenance.model.js";
 // Create a new maintenance task
 export const createMaintenance = async (req, res) => {
   try {
-    console.log(req.body);
     const file = req.file;
+    console.log(file)
     const reqData = {
       pdfURL: file.path,
       ...req.body
@@ -19,6 +19,7 @@ export const createMaintenance = async (req, res) => {
     const savedMaintenance = await newMaintenance.save();
     res.status(201).json(savedMaintenance);
   } catch (error) {
+    console.log(error)
     res.status(400).json({ error: error.message });
   }
 };

@@ -3,6 +3,7 @@ import express from  'express'
 import dotenv from  'dotenv'
 import connectDB from  './config/db.js'
 import cors from  "cors"
+import fs from "fs"
 import maintenanceRoutes from  './routers/maintenance.routes.js'
 import contractorRoutes from  './routers/contractor.routes.js'
 import residentRoutes from  './routers/resident.routes.js'
@@ -25,6 +26,15 @@ app.use(cors({
   origin:"*"
 }))
 
+const uploadDir = "uploads";
+
+const ensureDirExists = (dirPath) => {
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+    console.log("uploads folder created")
+  }
+};
+ensureDirExists(uploadDir);
 // Middleware to parse JSON
 app.use(express.json());
 
