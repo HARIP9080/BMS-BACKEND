@@ -23,7 +23,7 @@ router.put("/maintenance/:id", maintenanceController.updateMaintenance);
 router.delete("/maintenance/:id", maintenanceController.deleteMaintenance);
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename).replace("/src/routers/app", "");
+const __dirname = path.dirname(__filename).replace("/app/src/routers", "");
 router.get("/download/uploads/:filename", (req, res) => {
   const filename = req.params.filename;
   const filePath = path.join(__dirname, "uploads", filename);
